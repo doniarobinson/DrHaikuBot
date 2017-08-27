@@ -106,7 +106,19 @@ var haiku = function(word) {
     });
 };
 
-function main() {
+
+// post immediately
+try {
+  let randomHaikuTopic = randomWords();
+  console.log(randomHaikuTopic);
+  haiku(randomHaikuTopic);
+}
+catch (e) {
+  console.log(e);
+}
+
+// then post every hour
+setInterval(function() {
   try {
     let randomHaikuTopic = randomWords();
     console.log(randomHaikuTopic);
@@ -114,13 +126,5 @@ function main() {
   }
   catch (e) {
     console.log(e);
-  } 
-}
-
-// post immediately
-main();
-
-// then post every hour
-setInterval(function() {
-  main();
+  }
 }, 1*60*60*1000);
