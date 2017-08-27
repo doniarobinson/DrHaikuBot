@@ -3,18 +3,19 @@ var configfile = (process.env.consumer_key === undefined) ? './config-private.js
 var config = require(configfile);
 
 var request = require('superagent');
+var randomWords = require('random-words');
 var Twit = require('twit');
 var T = new Twit(config);
 
 // Promise
 var getWords = function(word) {
   return new Promise(function(resolve, reject) {
-    //var queryParam = "ml";
-    var queryParam = "rel_bgb";
-    //var queryParam = "rel_bga";
-    //var queryParam = "rel_trg";
+    var queryParam = ["ml", "rel_bgb", "rel_bga", "rel_trg"];
+    const randIndex = Math.floor(Math.random() * queryParam.length);
 
-    var wordUrl = "http://api.datamuse.com/words?" + queryParam + "=" + word + "&md=sp&v=enwiki";
+    console.log("Query parameter: " + queryParam[randIndex]);
+
+    var wordUrl = "http://api.datamuse.com/words?" + queryParam[randIndex] + "=" + word + "&md=sp&v=enwiki";
      
     request
       .get(wordUrl)
@@ -98,7 +99,7 @@ var haiku = function(word) {
       let shuffledArray = shuffle(wordsArray);
       let tweetText = word + " #haiku\n\n" + writeHaiku(shuffledArray);
       console.log(tweetText);
-      //tweetMessage('',tweetText);
+      tweetMessage('',tweetText);
     })
     .catch(function (error) {
       console.log("Error: " + error.message);
@@ -107,8 +108,9 @@ var haiku = function(word) {
 
 function main() {
   try {
-
-    haiku("monkey");
+    let randomHaikuTopic = randomWords();
+    console.log(randomHaikuTopic);
+    haiku(randomHaikuTopic);
   }
   catch (e) {
     console.log(e);
@@ -119,6 +121,6 @@ function main() {
 main();
 
 // then post every hour
-/*setInterval(function() {
+setInterval(function() {
   main();
-}, 1*60*60*1000);*/
+}, 1*60*60*1000);
