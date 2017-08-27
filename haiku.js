@@ -103,7 +103,7 @@ var haiku = function(word) {
       let shuffledArray = shuffle(wordsArray);
       let tweetText = word + " #haiku\n\n" + writeHaiku(shuffledArray);
       console.log(tweetText);
-      //tweetMessage('',tweetText);
+      tweetMessage('',tweetText);
     })
     .catch(function (error) {
       console.log("Error: " + error.message);
@@ -127,4 +127,4 @@ main();
 // then post every hour
 setInterval(function() {
   main();
-}, 1*3*60*1000);
+}, 1*60*60*1000);
