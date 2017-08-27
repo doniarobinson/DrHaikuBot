@@ -1,0 +1,5 @@
+node_modules/
+config-private.js
+npm-debug.log
+*.sublime-project
+*.sublime-workspace

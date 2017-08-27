@@ -1,0 +1,26 @@
+{
+  "name": "haikuwriter",
+  "version": "0.0.1",
+  "description": "",
+  "engines": {
+    "node": "6.11.1"
+  },
+  "main": "haiku.js",
+  "scripts": {
+    "start": "node haiku.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Donia Robinson <doniamae@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "haiku",
+    "npm"
+  ],
+  "dependencies": {
+    "superagent": "^2.3.0"
+  }
+}
