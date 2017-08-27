@@ -9,11 +9,13 @@ var T = new Twit(config);
 // Promise
 var getWords = function(word) {
   return new Promise(function(resolve, reject) {
-    //var wordUrl = "http://api.datamuse.com/words?ml=" + word + "&md=s";
-    var wordUrl = "http://api.datamuse.com/words?rel_bgb=" + word + "&md=s";
-    //var wordUrl = "http://api.datamuse.com/words?rel_bga=" + word + "&md=s";
-    //var wordUrl = "http://api.datamuse.com/words?rel_trg=" + word + "&md=s";
-      
+    //var queryParam = "ml";
+    var queryParam = "rel_bgb";
+    //var queryParam = "rel_bga";
+    //var queryParam = "rel_trg";
+
+    var wordUrl = "http://api.datamuse.com/words?" + queryParam + "=" + word + "&md=sp&v=enwiki";
+     
     request
       .get(wordUrl)
       .end(function(worderror, wordresult) {
@@ -105,7 +107,8 @@ var haiku = function(word) {
 
 function main() {
   try {
-    haiku("giraffe");
+
+    haiku("monkey");
   }
   catch (e) {
     console.log(e);
@@ -116,6 +119,6 @@ function main() {
 main();
 
 // then post every hour
-setInterval(function() {
+/*setInterval(function() {
   main();
-}, 1*60*60*1000);
+}, 1*60*60*1000);*/
