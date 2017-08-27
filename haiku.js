@@ -127,4 +127,4 @@ main();
 // then post every hour
 setInterval(function() {
   main();
-}, 1*60*1000);
+}, 1*3*60*1000);
