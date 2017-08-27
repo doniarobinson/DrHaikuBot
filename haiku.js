@@ -99,26 +99,14 @@ var haiku = function(word) {
       let shuffledArray = shuffle(wordsArray);
       let tweetText = word + " #haiku\n\n" + writeHaiku(shuffledArray);
       console.log(tweetText);
-      tweetMessage('',tweetText);
+      //tweetMessage('',tweetText);
     })
     .catch(function (error) {
       console.log("Error: " + error.message);
     });
 };
 
-
-// post immediately
-try {
-  let randomHaikuTopic = randomWords();
-  console.log(randomHaikuTopic);
-  haiku(randomHaikuTopic);
-}
-catch (e) {
-  console.log(e);
-}
-
-// then post every hour
-setInterval(function() {
+function main() {
   try {
     let randomHaikuTopic = randomWords();
     console.log(randomHaikuTopic);
@@ -127,4 +115,12 @@ setInterval(function() {
   catch (e) {
     console.log(e);
   }
+}
+
+// post immediately
+main();
+
+// then post every hour
+setInterval(function() {
+  main();
 }, 1*60*60*1000);
