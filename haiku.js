@@ -42,6 +42,10 @@ function shuffle(arr) {
     return arr;    
 };
 
+function hasNumber(myString) {
+  return /\d/.test(myString);
+}
+
 var writeHaiku = function(wordList) {
   let currentSyllables = [5,7,5];
   let h=0;
@@ -54,7 +58,7 @@ var writeHaiku = function(wordList) {
     while (currentSyllables[h] > 0) {
       wordSyllables = wordList[i].numSyllables;
 
-      if (wordSyllables <= currentSyllables[h]) {
+      if ((wordSyllables <= currentSyllables[h]) && ()) {
         result += wordList[i].word + " ";
         currentSyllables[h] -= wordSyllables;
       }
@@ -123,4 +127,4 @@ main();
 // then post every hour
 setInterval(function() {
   main();
-}, 1*60*60*1000);
+}, 1*60*1000);
