@@ -58,7 +58,7 @@ var writeHaiku = function(wordList) {
     while (currentSyllables[h] > 0) {
       wordSyllables = wordList[i].numSyllables;
 
-      if ((wordSyllables <= currentSyllables[h]) && ()) {
+      if ((wordSyllables <= currentSyllables[h]) && (!hasNumber(wordList[i]))) {
         result += wordList[i].word + " ";
         currentSyllables[h] -= wordSyllables;
       }
