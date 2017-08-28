@@ -184,7 +184,7 @@ function tweetEvent(tweet) {
     .then(function (words) {
       let wordsArray = Array.from(words);
       let shuffledArray = shuffle(wordsArray);
-      replyText += txt + " #haiku\n\n" + writeHaiku(shuffledArray);
+      replyText += txt.replace(/+/g,' ') + " #haiku\n\n" + writeHaiku(shuffledArray);
       console.log(replyText);
       
 //      tweetMessage('',tweetText);
