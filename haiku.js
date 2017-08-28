@@ -19,11 +19,18 @@ var stream = T.stream('user');
 var getWords = function(word) {
   return new Promise(function(resolve, reject) {
     var queryParam = ["ml", "rel_bgb", "rel_bga", "rel_trg"];
-    const randIndex = Math.floor(Math.random() * queryParam.length);
+
+    var randIndex = 0;
+
+    // if phrase is only one word, can choose a random query type
+    if (word.indexOf('+') < 0) {
+      randIndex = Math.floor(Math.random() * queryParam.length);
+    }
 
     console.log("Query parameter: " + queryParam[randIndex]);
 
     var wordUrl = "http://api.datamuse.com/words?" + queryParam[randIndex] + "=" + word + "&md=sp&v=enwiki";
+    console.log(wordUrl);
      
     request
       .get(wordUrl)
