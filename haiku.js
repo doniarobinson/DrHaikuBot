@@ -7,6 +7,14 @@ var randomWords = require('random-words');
 var Twit = require('twit');
 var T = new Twit(config);
 
+const myId = 'DrHaikuBot';
+//const myId = 'doniamaebot';
+
+// Setting up a user stream
+var stream = T.stream('user');
+
+
+
 // Promise
 var getWords = function(word) {
   return new Promise(function(resolve, reject) {
@@ -128,3 +136,67 @@ main();
 setInterval(function() {
   main();
 }, 1*60*60*1000);
+
+
+// Now looking for tweet events
+// See: https://dev.twitter.com/streaming/userstreams
+stream.on('tweet', tweetEvent);
+
+// Here a tweet event is triggered!
+function tweetEvent(tweet) {
+
+  // If we wanted to write a file out
+  // to look more closely at the data
+  // var fs = require('fs');
+  // var json = JSON.stringify(tweet,null,2);
+  // fs.writeFile("tweet.json", json, output);
+
+  // Who is this in reply to?
+  var reply_to = tweet.in_reply_to_screen_name;
+  // Who sent the tweet?
+  var name = tweet.user.screen_name;
+  // What is the text?
+  var txt = tweet.text;
+  // If we want the conversation thread
+  var id = tweet.id_str;
+
+  // Ok, if this was in reply to me
+  // Tweets by me show up here too
+  if (reply_to === myId) {
+
+    // Get rid of the @ mention
+
+    txt = txt.substring(txt.indexOf(' ') + 1);
+    txt = txt.replace(/ /g,'+');
+    console.log(txt);
+
+    // Start a reply back to the sender
+    var replyText = '@' + name + ' ';
+
+  getWords(txt)
+    .then(function (words) {
+      let wordsArray = Array.from(words);
+      let shuffledArray = shuffle(wordsArray);
+      replyText += txt + " #haiku\n\n" + writeHaiku(shuffledArray);
+      console.log(replyText);
+      
+//      tweetMessage('',tweetText);
+      // Post that tweet
+      T.post('statuses/update', { status: replyText, in_reply_to_status_id: id}, tweeted);
+
+      // Make sure it worked!
+      function tweeted(err, reply) {
+        if (err) {
+          console.log(err.message);
+        } else {
+          console.log('Tweeted: ' + reply.text);
+        }
+      }
+
+    })
+    .catch(function (error) {
+      console.log("Error: " + error.message);
+    });
+
+  }
+}
