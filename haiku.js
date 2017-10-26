@@ -139,10 +139,10 @@ function main() {
 // post immediately
 main();
 
-// then post every hour
+// then post every 2 hours
 setInterval(function() {
   main();
-}, 1*60*60*1000);
+}, 2*60*60*1000);
 
 
 // Now looking for tweet events
