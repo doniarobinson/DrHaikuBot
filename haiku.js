@@ -170,11 +170,24 @@ function tweetEvent(tweet) {
 
   // Ok, if this was in reply to me
   // Tweets by me show up here too
-  if (reply_to === myId) {
+  //if (reply_to === myId) {
+    if (name !== myId) {
 
     // Get rid of the @ mention
+    // WHEREVER IT IS
 
-    txt = txt.substring(txt.indexOf(' ') + 1);
+//    txt = txt.substring(txt.indexOf(' ') + 1);
+//    txt = txt.replace(/ /g,'+');
+
+    var txtArr = txt.split(' ');
+    txt = '';
+
+    for (var i=0; i<txtArr.length; i++) {
+      if (txtArr[i].indexOf('@')<0) {
+        txt+=txtArr[i] + " ";
+      }
+    }
+
     txt = txt.replace(/ /g,'+');
     console.log(txt);
 
