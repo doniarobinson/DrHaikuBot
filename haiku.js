@@ -154,9 +154,10 @@ function tweetEvent(tweet) {
 
   // If we wanted to write a file out
   // to look more closely at the data
-   var fs = require('fs');
-   var json = JSON.stringify(tweet,null,2);
-   fs.writeFile("tweet.json", json, output);
+  // var fs = require('fs');
+  // var json = JSON.stringify(tweet,null,2);
+  console.log(JSON.stringify(tweet,null,2));
+  // fs.writeFile("tweet.json", json, output);
 
   // Who is this in reply to?
   var reply_to = tweet.in_reply_to_screen_name;
