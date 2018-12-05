@@ -14,13 +14,15 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/doniarobinson/DrHaikuBot"
   },
   "keywords": [
     "haiku",
     "npm"
   ],
   "dependencies": {
-    "superagent": "^2.3.0"
+    "superagent": "^2.3.0",
+    "random-words": "*",
+    "twit": "^2.2.5"
   }
 }

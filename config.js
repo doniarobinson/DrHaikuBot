@@ -3,10 +3,6 @@
     consumer_key, consumer_secret, access_token, access_token_secret
     Set up an account for your bot at dev.twitter.com
     Generate the items below and fill them in here
-
-    NASA API KEY
-    Set up an account for your bot at api.nasa.gov
-    Take the API key generated for you and fill it in here
 */
 
 module.exports = {
