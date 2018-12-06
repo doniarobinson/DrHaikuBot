@@ -21,8 +21,8 @@
     "npm"
   ],
   "dependencies": {
-    "superagent": "^2.3.0",
-    "random-words": "*",
-    "twit": "^2.2.5"
+    "random-words": "^1.1.0",
+    "superagent": "^3.7.0",
+    "twit": "^2.2.11"
   }
 }
