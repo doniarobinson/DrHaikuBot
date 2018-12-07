@@ -24,7 +24,7 @@ var getWords = function(word) {
       randIndex = Math.floor(Math.random() * queryParam.length);
     }
 
-    console.log("Query parameter: " + queryParam[randIndex]);
+    //console.log("Query parameter: " + queryParam[randIndex]);
 
     var wordUrl = "http://api.datamuse.com/words?" + queryParam[randIndex] + "=" + word + "&md=sp&v=enwiki";
     console.log(wordUrl);
@@ -38,20 +38,19 @@ var getWords = function(word) {
           reject(worderror);
         }
       });
-    });
+  });
 }
 
 function shuffle(arr) {
-    var i,
-        j,
-        temp;
-    for (i = arr.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+    var j,temp;
+    
+    for (var i=arr.length - 1; i>0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
     }
-    return arr;    
+    return arr;
 };
 
 function hasNumber(myString) {
