@@ -27,7 +27,7 @@ var getWords = function(word) {
     //console.log("Query parameter: " + queryParam[randIndex]);
 
     var wordUrl = "http://api.datamuse.com/words?" + queryParam[randIndex] + "=" + word + "&md=sp&v=enwiki";
-    console.log(wordUrl);
+    console.log("wordUrl: " + wordUrl);
      
     request
       .get(wordUrl)
@@ -83,7 +83,7 @@ var writeHaiku = function(wordList) {
 }
 
 function tweetMessage(filename,tweettext) {
-
+    console.log("Trying to tweet");
     T.postMediaChunked({
       //file_path: filename
     }, function(err, data, response) {
@@ -145,10 +145,6 @@ setInterval(function() {
 stream.on('tweet', tweetEvent);
 
 function tweetEvent(tweet) {
-  // if we wanted to write a file out to look more closely at the data
-  // var fs = require('fs');
-  // var json = JSON.stringify(tweet,null,2);
-  // fs.writeFile("tweet.json", json, output);
   console.log(JSON.stringify(tweet,null,2));
 
   // who is this in reply to
@@ -160,8 +156,7 @@ function tweetEvent(tweet) {
   // conversation thread
   var id = tweet.id_str;
 
-  // Ok, if this was in reply to me
-  // Tweets by me show up here too
+  // if this was in reply to me
   //if (reply_to === myId) {
     if (name !== myId) {
 
