@@ -53,8 +53,6 @@ function shuffle(arr) {
 }
 
 function hasNumber(myString) {
-  console.log(myString)
-  console.log(/\d/.test(myString))
   return /\d/.test(myString)
 }
 
