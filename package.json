@@ -22,7 +22,7 @@
   ],
   "dependencies": {
     "random-words": "^1.1.0",
-    "superagent": "^3.7.0",
+    "superagent": "^5.2.1",
     "twit": "^2.2.11"
   }
 }
